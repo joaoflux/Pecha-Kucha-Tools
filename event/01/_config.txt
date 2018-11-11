@@ -1,0 +1,6 @@
+*speaker=Asmus Trautsch*
+*topic=Der See - ich sah*
+*date=19.10.2018*
+*delay_in=*
+*delay_out=0*
+*link=*
