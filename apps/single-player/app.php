@@ -33,10 +33,10 @@ function dir_list($dir){
 <head>
 	<meta charset="UTF-8" />
 	<title>Speaker / Title</title>
-	<link rel="stylesheet" type="text/css" media="all" href="../../application/styles.css" />
-	<script type='text/javascript' src='../../application/jquery-1.7.min.js'></script>
+	<link rel="icon" href="../../../assets/favicon.ico" type="image/png" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../apps/single-player/styles.css" />
+	<script type='text/javascript' src='../../../assets/jquery-1.7.min.js'></script>
 	<script type='text/javascript' src='_config.js'></script>
-
 </head>
 
 <body>
@@ -55,10 +55,10 @@ function dir_list($dir){
 		</div>			
 		<div id="controls">
 			<span id="play-pause" class="play"></span>
-			<span onclick="toggleFullscreen();" id="toggle-full" class="full"></span>
+			<span id="toggle-full" class="full"></span>
 		</div>	
 	</div>
-	<script type="text/javascript" src="../../application/player.js"></script>
+	<script type="text/javascript" src="../../../apps/single-player/app.js"></script>
 	<script type='text/javascript'>
 		<?php
 			$php_array = $slides;
@@ -75,7 +75,7 @@ function dir_list($dir){
 					parsed += property + ": " + myobj[property] + "\n";          
 				}
 		}                           
-
+		inactivityTime();
 	</script>
 </body>
 </html>

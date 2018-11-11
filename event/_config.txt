@@ -1,6 +1,0 @@
-*event=Akademie zur Lyrikkritik*
-*date=19.10.2018*
-*place=Haus für Poesie*
-*pause1=*
-*pause2=*
-*count=2*

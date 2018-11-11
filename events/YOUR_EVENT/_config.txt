@@ -1,0 +1,6 @@
+*event=Title of Event*
+*date=01.01.1970*
+*place=Place where event took place*
+*pause1=*
+*pause2=*
+*count=2*
