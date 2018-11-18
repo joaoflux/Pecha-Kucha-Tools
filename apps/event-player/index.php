@@ -1,3 +1,11 @@
+<?php
+include $applicationPath.'functions.php'; 
+$app = $applicationPath.'app.js'; 
+$eventConfigFile = "_config.json"; // Input File
+$eventDataFile = "event.json"; // Output File
+//storeEvent($eventConfigFile, $eventDataFile); //uncomment, if you want to store event data to a file
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,8 +14,8 @@
     <title>Pecha Kucha Player 2017</title>
     <link rel="Shortcut Icon" href="../../assets/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="all" href="../../apps/event-player/styles.css" />
-    <script type='text/javascript' src='_config.js'></script>
-    <script type='text/javascript' src='../../assets/jquery-3.3.1.min.js'></script>     
+    <script type='text/javascript' src='../../assets/jquery-3.3.1.min.js'></script> 
+
   </head>
   <body>
     <ul id="menu">
@@ -21,7 +29,7 @@
       
     <div id="stage">
       <div id="titleSlide">
-        <h1 id="speaker">Speaker Name</h1>
+        <h1 id="speaker">loading event...</h1>
         <input id="startPlayer" type="button" value="Start Player" class="button" onClick="displayEvent()" />
       </div>
       <div id="clockCounter">
@@ -30,10 +38,15 @@
         <canvas id="clock" width="60" height="60"></canvas>
       </div>
     </div>
+<!-- EO  Data on the fly
+Only required, if you don't read the event from a stored file 
+If you remove this, you also need to edit app.js-->
+    <<script type="text/javascript">
+      var eventData = <?php prepareEvent($eventConfigFile); ?>;
+      var parsed = "";
+    </script>
+<!-- EO  Data on the fly -->
 
-    <script type="text/javascript" src="../../apps/event-player/app.js"></script>
-
-
-
+    <script type="text/javascript" src="<?php echo $app ?>"></script>
   </body>
 </html>

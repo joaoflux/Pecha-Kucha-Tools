@@ -1,9 +1,9 @@
 $ = jQuery.noConflict(); 
-
+$(document).ready(init());
+document.onkeydown = checkKey;
 
 // global vars
 var baseURL = window.location;
-var eventDataFile = "event.json";
 var eventData;
 
 // Navigation settings
@@ -50,28 +50,19 @@ var updateClock;
 var wasPaused = false;
 var isBreak = false;
 
-$(document).ready(init());
-document.onkeydown = checkKey;
-
-
 // functions
 function init() {
-    
-    //loadEventData(); // uncomment, if you want to store event data to file
-    displayEvent(); // uncomment, if you want to don't want to store data to a file 
-    //console.log (eventData);   
+    loadEventData();
 }
 
 function loadEventData() {
-    //var eventDataFile = "event.json";
     $.ajax({
-        url: eventDataFile,
+        url: "event.json",
         dataType: "text",
         success: function (data) {
             data = $.parseJSON(data);
             eventData = data;
             displayEvent();
-            //console.log (eventData);
         }
     });
 }
@@ -110,8 +101,7 @@ function resetControls() {
 
 function checkKey(e) {
     switch (e.keyCode) {
-        //case 222:  // keydown: ä
-        case 40: // keydown: arrow down
+        case 222:  // keydown: ä
             isBreak = false;
             mode('stop');
             $('#clockCounter').css("display", "none");
@@ -129,8 +119,7 @@ function checkKey(e) {
                 initPresentation(presentationID + 1);
             }
             break;
-        //case 186:  // keydown: ö
-        case 38: // keydown: arrow up
+        case 186:  // keydown: ö
             isBreak = false;
             mode('stop');
             $('#clockCounter').css("display", "none");
@@ -151,8 +140,7 @@ function checkKey(e) {
         case 77:  // keydown: m
             toggleMenu();
             break;
-        //case 80:  // keydown: p
-        case 32:  // keydown: spacebar
+        case 80:  // keydown: p
             isBreak = false;
             if (smode !== "play") {
                 if (presentationID != -1) {

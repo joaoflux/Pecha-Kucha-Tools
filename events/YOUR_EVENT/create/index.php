@@ -1,1 +1,4 @@
-<?php include '../../../apps/event-creator/app.php'; ?>
+<?php 
+$applicationPath = "../../../apps/event-reader/";
+include $applicationPath.'index.php';
+?>
