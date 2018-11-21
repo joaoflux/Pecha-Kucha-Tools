@@ -1,0 +1,6 @@
+*speaker=Speaker Name*
+*topic=Presentation Title*
+*date=01.01.1970*
+*delay_in=*
+*delay_out=*
+*link=https://pechakucha.de*

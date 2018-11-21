@@ -1,1 +1,3 @@
-<?php include '../../../apps/single-player/app.php'; ?>
+<?php 
+    include '../../../apps/single-player/app.php';
+?>

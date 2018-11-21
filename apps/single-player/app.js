@@ -1,7 +1,8 @@
 $ = jQuery.noConflict(); 
-$(document).ready(init);
 
 // global vars
+var presentationDataFile = "_config.json";
+var presentationData = new Array();
 
 // Navigation settings
 var controlsVisible = true;
@@ -11,7 +12,7 @@ var speaker;
 var topic;
 var documentTitle;
 var date;
-var delay_in;
+// var delay_in;
 var delay_out;
 var link;
 
@@ -55,8 +56,6 @@ counterContext.fill();
 counterContext.strokeStyle = counterColor;
 counterContext.stroke();
 
-
-
 $('#slideshow').mouseout(hideControls);
 $('#play-pause').click(playpause);
 $('#toggle-full').click(toggleFullscreen);
@@ -64,15 +63,36 @@ window.onmousemove = showControls;
 document.onkeypress = showControls;
 
 
+$(document).ready(init);
+
+
 // functions
 function init(){
-	displayInfo();
+	loadPresentationData();
+	
 	initAudio();
 	initTimes();
 	audioElement.onended = function() {
 	    resetShow();
 		};
 }
+
+function loadPresentationData() {
+    //var eventDataFile = "event.json";
+    $.ajax({
+        url: presentationDataFile,
+        dataType: "text",
+        success: function (data) {
+            data = $.parseJSON(data);
+			presentationData = data;
+			displayInfo();
+		},
+		//async: false
+	});
+
+	
+}
+
 function resetShow() {
 //	playing = false;
 //	curTime = 0;
@@ -85,11 +105,11 @@ function resetShow() {
 }
 
 function displayInfo(){
-    $('#speaker').html(speaker);
-    $('#title').html(topic);
-    $('#date').html(date);
-    $('#info-speaker').html(speaker);
-	$('#info-title').html(topic); 
+    $('#speaker').html(presentationData.speaker);
+    $('#title').html(presentationData.title);
+    $('#date').html(presentationData.date);
+    $('#info-speaker').html(presentationData.speaker);
+	$('#info-title').html(presentationData.title); 
     var linkout="<a href='"+link+"' target='blank'>"+link+"</a>";
     $(linkout).appendTo('#info-link');
     var documentTitle = speaker+" / "+topic;
@@ -207,7 +227,6 @@ function displayTime (){
 }
 
 function drawClock(clockStatus) {
-	console.log('drawing');
 	clockContext.beginPath();
 	clockContext.arc(clockX, clockY, clockRadius, -1.6, clockStatus - 1.6, false);
 	clockContext.lineWidth = 3;
@@ -280,8 +299,8 @@ function timeUpdate(){
   	var imagetime = Math.round((timeArr[curImage] - curTime)/1000);
   	var imagebar = 3*imagetime;
 	var imageprogress = 20-imagetime;
-	console.log('-');
-	console.log(curImage);
+	//console.log('-');
+	//console.log(curImage);
   	if(imageprogress<0){
   		imageprogress = 0;
   	}

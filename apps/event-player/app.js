@@ -57,8 +57,8 @@ document.onkeydown = checkKey;
 // functions
 function init() {
     
-    //loadEventData(); // uncomment, if you want to store event data to file
-    displayEvent(); // uncomment, if you want to don't want to store data to a file 
+    //loadEventData(); // uncomment, if you want to load event data from a file
+    displayEvent(); // uncomment, if you want to don't want to load data from a file 
     //console.log (eventData);   
 }
 

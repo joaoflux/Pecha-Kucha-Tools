@@ -58,7 +58,7 @@ function dir_list($dir){
 			<span id="toggle-full" class="full"></span>
 		</div>	
 	</div>
-	<script type="text/javascript" src="../../../apps/single-player/app.js"></script>
+	<script type="text/javascript" src="../../../apps-legacy/single-player/app.js"></script>
 	<script type='text/javascript'>
 		<?php
 			$php_array = $slides;

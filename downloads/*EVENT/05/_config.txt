@@ -1,0 +1,6 @@
+*speaker=Cansu Tasceviren*
+*topic=yasalaam berlin - the female is future*
+*date=20.11.2018*
+*delay_in=*
+*delay_out=0*
+*link=*
