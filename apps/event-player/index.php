@@ -12,9 +12,9 @@ $eventDataFile = "event.json"; // Output File
     <meta http-equiv="cache-control" content="no-cache">
     <meta charset="UTF-8">
     <title>Pecha Kucha Player 2017</title>
-    <link rel="Shortcut Icon" href="../../assets/favicon.ico" type="image/x-icon" />
+    <link rel="Shortcut Icon" href="../../apps/_global-resources/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="all" href="../../apps/event-player/styles.css" />
-    <script type='text/javascript' src='../../assets/jquery-3.3.1.min.js'></script> 
+    <script type='text/javascript' src='../../apps/_global-resources/jquery-3.3.1.min.js'></script> 
 
   </head>
   <body>

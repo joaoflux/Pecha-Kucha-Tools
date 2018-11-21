@@ -33,9 +33,9 @@ function dir_list($dir){
 <head>
 	<meta charset="UTF-8" />
 	<title>Speaker / Title</title>
-	<link rel="icon" href="../../../assets/favicon.ico" type="image/png" />
-	<link rel="stylesheet" type="text/css" media="all" href="../../../apps/single-player/styles.css" />
-	<script type='text/javascript' src='../../../assets/jquery-3.3.1.min.js'></script>
+	<link rel="icon" href="../../../apps-legacy/_global-resources/favicon.ico" type="image/png" />
+	<link rel="stylesheet" type="text/css" media="all" href="../../../apps-legacy/single-player/styles.css" />
+	<script type='text/javascript' src='../../../apps-legacy/_global-resources/jquery-3.3.1.min.js'></script>
 	<script type='text/javascript' src='_config.js'></script>
 </head>
 
