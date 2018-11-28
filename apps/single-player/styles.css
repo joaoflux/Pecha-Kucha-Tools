@@ -109,29 +109,29 @@ body {
 }
 
 .play {
-	background: url(../../assets/player-s.png) no-repeat -30px 0;
+	background: url(../../apps/_global-resources/player-s.png) no-repeat -30px 0;
 }
 .play:hover {
-	background: url(../../assets/player-s.png) no-repeat -30px -30px;
+	background: url(../../apps/_global-resources/player-s.png) no-repeat -30px -30px;
 }
 .pause {
-	background: url(../../assets/player-s.png) no-repeat 0 0;
+	background: url(../../apps/_global-resources/player-s.png) no-repeat 0 0;
 }
 .pause:hover {
-	background: url(../../assets/player-s.png) no-repeat 0 -30px;
+	background: url(../../apps/_global-resources/player-s.png) no-repeat 0 -30px;
 }
 
 .full {
-	background: url(../../assets/toggle-full-s.png) no-repeat -30px 0;
+	background: url(../../apps/_global-resources/toggle-full-s.png) no-repeat -30px 0;
 }
 .full:hover {
-	background: url(../../assets/toggle-full-s.png) no-repeat -30px -30px;
+	background: url(../../apps/_global-resources/toggle-full-s.png) no-repeat -30px -30px;
 }
 .window {
-	background: url(../../assets/toggle-full-s.png) no-repeat 0 0;
+	background: url(../../apps/_global-resources/toggle-full-s.png) no-repeat 0 0;
 }
 .window:hover {
-	background: url(../../assets/toggle-full-s.png) no-repeat 0 -30px;
+	background: url(../../apps/_global-resources/toggle-full-s.png) no-repeat 0 -30px;
 }
 
 #info {

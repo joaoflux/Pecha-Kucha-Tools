@@ -253,6 +253,7 @@ function checkKey(e) {
 // Event & Presentaion functions
 function displayEvent() {
     wipeStage();
+    $('#stage').addClass('on'); 
     var eventTitle = '<h1 id="speaker">' + eventData.event + '</h1><h1 id="speaker">' + eventData.place + '</h1>';
     if (isBreak) {
         var eventBreak = '<h2 id="break">Pause</h2>';
@@ -295,6 +296,7 @@ function preloadSlides(ID) {
 
 function displayTitleSlide(ID) {
     wipeStage();
+    $('#stage').addClass('on'); 
     var activeSpeaker = '<h1 id="speaker">' + eventData.presentations[ID].speaker + '</h1>';
     var activeTitle = '<h2 id="title">' + eventData.presentations[ID].title + '</h2>';
     var activeLink = '<div id="link"><a href="' + eventData.presentations[ID].link + '">' + eventData.presentations[ID].link + '</a></div>';
@@ -306,6 +308,7 @@ function displayTitleSlide(ID) {
 function playPresentation(ID) {
     var slides = [];
     wipeStage();
+    $('#stage').removeClass('on'); 
     var activeSlide = baseURL + "/" + eventData.presentations[ID].slot + "/" + eventData.presentations[ID].slides[0].file;
     if (wasPaused != true) {
         wipeStage();
@@ -399,7 +402,6 @@ function drawClock() {
         }
     }
 }
-
 function wipeStage() {
     $("div#titleSlide").replaceWith('<div id="activeSlide"></div>');
 }
