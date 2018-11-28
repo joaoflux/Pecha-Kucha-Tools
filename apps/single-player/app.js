@@ -112,7 +112,7 @@ function displayInfo(){
 	$('#info-title').html(presentationData.title); 
     var linkout="<a href='"+link+"' target='blank'>"+link+"</a>";
     $(linkout).appendTo('#info-link');
-    var documentTitle = speaker+" / "+topic;
+    var documentTitle = presentationData.speaker+" / "+presentationData.title;
     $('title').html(documentTitle);
 }
 
