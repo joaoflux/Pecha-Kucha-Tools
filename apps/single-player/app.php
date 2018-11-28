@@ -35,9 +35,14 @@ function dir_list($dir){
 	<title>Speaker / Title</title>
 	<link rel="icon" href="../../../apps/_global-resources/favicon.ico" type="image/png" />
 	<link rel="stylesheet" type="text/css" media="all" href="../../../apps/single-player/styles.css" />
-	<script type='text/javascript' src='../../../apps/_global-resources/jquery-3.3.1.min.js'></script>
-	<script type='text/javascript' > var delay_in = ""; </script> <!-- Fallback, if no delay file found -->
-	<script type='text/javascript' src='_delay.js'> var delay_in = ""; </script>
+	<script type="text/javascript" src="../../../apps/_global-resources/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript"> var delay_in = ""; </script> <!-- Fallback, if no delay file found -->
+	<?php 
+    if (file_exists ($delayConfig)){
+	  echo "<script type=\"ext/javascript\" src=\"_delay.js\"></script>"; 
+    }; ?>
+
+
 </head>
 
 <body>
