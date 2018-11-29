@@ -77,6 +77,39 @@ function loadEventData() {
 }
 
 // navigation and controls functions
+
+function toggleFullscreen() {
+	var isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+		(document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+		(document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+		(document.msFullscreenElement && document.msFullscreenElement !== null);
+		
+	var docElm = document.documentElement;
+		if (!isInFullScreen) {
+			if (docElm.requestFullscreen) {
+				docElm.requestFullscreen();
+			} else if (docElm.mozRequestFullScreen) {
+				docElm.mozRequestFullScreen();
+			} else if (docElm.webkitRequestFullScreen) {
+				docElm.webkitRequestFullScreen();
+			} else if (docElm.msRequestFullscreen) {
+				docElm.msRequestFullscreen();
+			}
+            document.body.style.cursor = "none";
+		} else {
+			if (document.exitFullscreen) {
+				document.exitFullscreen();
+			} else if (document.webkitExitFullscreen) {
+				document.webkitExitFullscreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.msExitFullscreen) {
+				document.msExitFullscreen();
+            }
+            document.body.style.cursor = "auto";
+		}
+	}
+
 function toggleMenu() {
     if (!menuBuilt) {
         buildMenu();
@@ -108,92 +141,160 @@ function resetControls() {
     document.getElementById("stop").disabled = "disabled";
 }
 
+function playPause() {
+    isBreak = false;
+    if (smode !== "play") {
+        if (presentationID != -1) {
+            mode('play');
+            playPresentation(presentationID);
+            startSlideshow();
+            $('#clockCounter').css("display", "block");
+            if (document.getElementById("videoSlide")) {
+            document.getElementById("videoSlide").play();
+            }
+        }
+    } else if (smode === "play") {
+        mode('pause');
+        clockMode = 'pause';
+        clearTimeout(updateSlide);
+        clearTimeout(updateClock);
+        if (document.getElementById("videoSlide")) {
+            document.getElementById("videoSlide").pause();
+        } else {
+            active--;
+        }
+        wasPaused = true;
+        startSlideshow();
+    }
+}
+
+function gotoTalkTitle() {
+    isBreak = false;
+    mode('stop');
+    $('#clockCounter').css("display", "none");
+    clearTimeout(updateSlide);
+    clearTimeout(updateClock);
+    active = 0;
+    activeDuration = 0;
+    wasPaused = false;
+    clockContext.clearRect(0, 0, 80, 80);
+    displayTitleSlide(presentationID);
+}
+
+function displayBreak() {
+    if (isBreak) {
+        isBreak = false;
+    } else {
+        isBreak = true;
+    }
+    mode('stop');
+    $('#clockCounter').css("display", "none");
+    clearTimeout(updateSlide);
+    clearTimeout(updateClock);
+    active = 0;
+    activeDuration = 0;
+    wasPaused = false;
+    clockContext.clearRect(0, 0, 80, 80);
+    displayEvent();
+}
+
+
+function nextSlide() {
+    if (smode !== 'pause') {
+        if (active != 0) {
+            clearTimeout(updateSlide);
+            clearTimeout(updateClock);
+            wasPaused = false;
+            activeDuration = 0;
+            clockContext.clearRect(0, 0, 80, 80);
+            startSlideshow();
+        }
+    }    
+}
+
+function previousSlide() {
+    if (smode !== 'pause') {
+        if (active > 1) {
+            clearTimeout(updateSlide);
+            clearTimeout(updateClock);
+            wasPaused = false;
+            mode('play');
+            clockMode = 'play';
+            activeDuration = 0;
+            clockContext.clearRect(0, 0, 80, 80);
+            active -= 2;
+           startSlideshow();
+        }
+    }
+}
+
+function nextTalk() {
+    isBreak = false;
+    mode('stop');
+    $('#clockCounter').css("display", "none");
+    clearTimeout(updateSlide);
+    clearTimeout(updateClock);
+    active = 0;
+    activeDuration = 0;
+    wasPaused = false;
+    clockContext.clearRect(0, 0, 80, 80);
+    resetControls();
+    if (presentationID + 1 == eventData.count) {
+        presentationID = -1;
+        displayEvent();
+    } else {
+        initPresentation(presentationID + 1);
+    }
+}
+
+function previousTalk() {
+    isBreak = false;
+    mode('stop');
+    $('#clockCounter').css("display", "none");
+    clearTimeout(updateSlide);
+    clearTimeout(updateClock);
+    active = 0;
+    activeDuration = 0;
+    wasPaused = false;
+    clockContext.clearRect(0, 0, 80, 80);
+    resetControls();
+    if (presentationID - 1 == -1) {
+        presentationID = -1;
+        displayEvent();
+    } else {
+        initPresentation(presentationID - 1);
+    } 
+}
+
 function checkKey(e) {
     switch (e.keyCode) {
+        //case 219:  // keydown: ü
         //case 222:  // keydown: ä
-        case 40: // keydown: arrow down
-            isBreak = false;
-            mode('stop');
-            $('#clockCounter').css("display", "none");
-            clearTimeout(updateSlide);
-            clearTimeout(updateClock);
-            active = 0;
-            activeDuration = 0;
-            wasPaused = false;
-            clockContext.clearRect(0, 0, 80, 80);
-            resetControls();
-            if (presentationID + 1 == eventData.count) {
-                presentationID = -1;
-                displayEvent();
-            } else {
-                initPresentation(presentationID + 1);
-            }
-            break;
         //case 186:  // keydown: ö
+        //case 80:  // keydown: p
+        case 32:  // keydown: spacebar
+            playPause();
+            break;
+        case 40: // keydown: arrow down
+            nextSlide();
+            break;
         case 38: // keydown: arrow up
-            isBreak = false;
-            mode('stop');
-            $('#clockCounter').css("display", "none");
-            clearTimeout(updateSlide);
-            clearTimeout(updateClock);
-            active = 0;
-            activeDuration = 0;
-            wasPaused = false;
-            clockContext.clearRect(0, 0, 80, 80);
-            resetControls();
-            if (presentationID - 1 == -1) {
-                presentationID = -1;
-                displayEvent();
-            } else {
-                initPresentation(presentationID - 1);
-            }
+            previousSlide();
+            break;
+        case 37:  // arrow left
+            previousTalk();
+            break;
+        case 39:  // arrow right
+            nextTalk();
             break;
         case 77:  // keydown: m
             toggleMenu();
             break;
-        //case 80:  // keydown: p
-        case 32:  // keydown: spacebar
-            isBreak = false;
-            if (smode !== "play") {
-                if (presentationID != -1) {
-                    mode('play');
-                    playPresentation(presentationID);
-                    startSlideshow();
-                    $('#clockCounter').css("display", "block");
-                    if (document.getElementById("videoSlide")) {
-                        document.getElementById("videoSlide").play();
-                    }
-                }
-            } else if (smode === "play") {
-                mode('pause');
-                clockMode = 'pause';
-                clearTimeout(updateSlide);
-                clearTimeout(updateClock);
-                if (document.getElementById("videoSlide")) {
-                    document.getElementById("videoSlide").pause();
-                } else {
-                    active--;
-                }
-                wasPaused = true;
-                startSlideshow();
-            }
-            break;
-        case 219:  // keydown: ü
-            mode('pause');
-            startSlideshow();
+        case 70:  // keydown: f
+            toggleFullscreen();
             break;
         case 187:  // keydown: +
-            isBreak = false;
-            mode('stop');
-            $('#clockCounter').css("display", "none");
-            clearTimeout(updateSlide);
-            clearTimeout(updateClock);
-            active = 0;
-            activeDuration = 0;
-            wasPaused = false;
-            clockContext.clearRect(0, 0, 80, 80);
-            displayTitleSlide(presentationID);
-            //startSlideshow();
+            gotoTalkTitle();
             break;
         case 88:  // keydown: x
             toggleControls();
@@ -202,47 +303,7 @@ function checkKey(e) {
             toggleControls();
             break;
         case 66:  // keypress: b
-            if (isBreak) {
-                isBreak = false;
-            } else {
-                isBreak = true;
-            }
-            mode('stop');
-            $('#clockCounter').css("display", "none");
-            clearTimeout(updateSlide);
-            clearTimeout(updateClock);
-            active = 0;
-            activeDuration = 0;
-            wasPaused = false;
-            clockContext.clearRect(0, 0, 80, 80);
-            displayEvent();
-            break;
-        case 37:  // arrow left
-            if (smode !== 'pause') {
-                if (active > 1) {
-                    clearTimeout(updateSlide);
-                    clearTimeout(updateClock);
-                    wasPaused = false;
-                    mode('play');
-                    clockMode = 'play';
-                    activeDuration = 0;
-                    clockContext.clearRect(0, 0, 80, 80);
-                    active -= 2;
-                    startSlideshow();
-                }
-            }
-            break;
-        case 39:  // arrow right
-            if (smode !== 'pause') {
-                if (active != 0) {
-                    clearTimeout(updateSlide);
-                    clearTimeout(updateClock);
-                    wasPaused = false;
-                    activeDuration = 0;
-                    clockContext.clearRect(0, 0, 80, 80);
-                    startSlideshow();
-                }
-            }
+            displayBreak();
             break;
         default:
             break;
@@ -405,3 +466,6 @@ function drawClock() {
 function wipeStage() {
     $("div#titleSlide").replaceWith('<div id="activeSlide"></div>');
 }
+
+
+

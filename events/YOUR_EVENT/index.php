@@ -1,4 +1,8 @@
-<?php 
-$applicationPath = "../../apps/event-player/";
+<?php
+$rootPath = "../../";
+$applicationDir = "apps";
+$applicationName = "event-player";
+
+$applicationPath = $rootPath."/".$applicationDir."/".$applicationName."/";
 include $applicationPath.'index.php';
 ?>
