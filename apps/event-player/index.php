@@ -12,10 +12,10 @@ $customStyles = "customStyles.css"; // Custom Stylesheet, overwrites global styl
   <head>
     <meta http-equiv="cache-control" content="no-cache">
     <meta charset="UTF-8">
-    <title>Pecha Kucha Player 2017</title>
-    <script type='text/javascript' src='../../apps/_global-resources/jquery-3.3.1.min.js'></script> 
-    <link rel="Shortcut Icon" href="../../apps/_global-resources/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" media="all" href="../../apps/event-player/styles.css" />
+    <title>Pecha Kucha Player</title>
+    <script type='text/javascript' src='<?php echo $rootPath ?>apps/_global-resources/jquery-3.3.1.min.js'></script> 
+    <link rel="Shortcut Icon" href="<?php echo $rootPath ?>apps/_global-resources/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $rootPath ?>apps/event-player/styles.css" />
     <?php 
     if (file_exists ($customStyles)){
       echo "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"customStyles.css\" />"; 
