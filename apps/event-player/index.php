@@ -20,12 +20,12 @@ $customStyles = "customStyles.css"; // Custom Stylesheet, overwrites global styl
     if (file_exists ($customStyles)){
       echo "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"customStyles.css\" />"; 
     }; ?>
-    
   </head>
   <body>
     <ul id="menu">
       Navigation goes here
     </ul>
+    
     <div id="controls">
       <input id="play" type="button" value="Play" disabled="disabled" onclick="mode('play');startSlideshow();" />
       <input id="pause" type="button" value="Pause" disabled="disabled" onclick="mode('pause');startSlideshow();" />
