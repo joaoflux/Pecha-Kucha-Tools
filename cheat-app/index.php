@@ -2,10 +2,11 @@
 
 <?php
 $slides = array();
-$path = getcwd();
+$path = '../';
 $slides = dir_list($path);
+$notes = dir_notes($path);
 
-function dir_list($dir){ 
+function dir_list($dir){
     $allowed_ext = array(".png", ".PNG", ".jpg", ".jpeg", ".mov", ".mp4", ".gif", ".JPG"); 
     $dl = array();
     $dt = array();
@@ -13,10 +14,28 @@ function dir_list($dir){
         while ($sz = readdir($hd)) {
             $ext = strrchr($sz, '.');
             if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$allowed_ext))) {
-                //$dl[] = $sz;
-
                 $dl[] = [
-                    "file" => $sz,
+                    "file" => '../'.$sz,
+                    "type" => $ext,
+                ];            
+            }
+        } 
+    closedir($hd); 
+    } 
+    sort($dl);
+    return $dl;
+}
+
+function dir_notes($dir){
+    $allowed_ext = array(".html"); 
+    $dl = array();
+    $dt = array();
+    if ($hd = opendir($dir))    { 
+        while ($sz = readdir($hd)) {
+            $ext = strrchr($sz, '.');
+            if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$allowed_ext))) {
+                $dl[] = [
+                    "file" => '../'.$sz,
                     "type" => $ext,
                 ];
                 
@@ -33,15 +52,17 @@ function dir_list($dir){
 <head>
 	<meta charset="UTF-8" />
 	<title>Speaker / Title</title>
-	<link rel="icon" href="../../../pk-tools/_global-resources/favicon.ico" type="image/png" />
-	<link rel="stylesheet" type="text/css" media="all" href="../../../pk-tools/single-player/styles.css" />
-	<script type="text/javascript" src="../../../pk-tools/_global-resources/jquery-3.3.1.min.js"></script>
+	<link rel="icon" href="<?php echo $rootPath?><?php echo $applicationDir ?>/_global-resources/favicon.ico" type="image/png" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo $applicationPath ?>styles.css" />
+	<script type="text/javascript" src="<?php echo $rootPath?><?php echo $applicationDir ?>/_global-resources/jquery-3.3.1.min.js"></script>
+
 	<?php 
     if (file_exists ($delayConfig)){
 	  	echo "<script type=\"text/javascript\" src=\"_delay.js\"></script>"; 
 	} else {
 		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
 	};
+	echo "<script type=\"text/javascript\">var silence = \"".$rootPath.$applicationDir."/_global-resources/silence-420sec/recording\";</script>";
 	?>
 </head>
 
@@ -52,8 +73,9 @@ function dir_list($dir){
 			<div id="title"></div>
 			<div id="date"></div>
 		</div>
+		<div id="current-slide"></div>
 		<div id="next-slide"></div>
-		<div id="current-slide"></div>			
+		<div id="current-notes"></div>		
 		<div id="clockCounter">
 			<canvas id="counter" width="60" height="60"></canvas>
 			<div id="img-num">0</div>
@@ -64,17 +86,19 @@ function dir_list($dir){
 			<span id="toggle-full" class="full"></span>
 		</div>	
 	</div>
-	<script type="text/javascript" src="../../../pk-tools/single-player/app.js"></script>
+	<script type="text/javascript" src="<?php echo $applicationPath ?>app.js"></script>
 	<script type='text/javascript'>
 		<?php
 			$php_array = $slides;
 			$js_array = json_encode($php_array);
 			echo "var slides = ". $js_array . ";\n";
+
+			$php_array_notes = $notes;
+			$js_array_notes = json_encode($php_array_notes);
+			echo "var notes = ". $js_array_notes . ";\n";
 		?>
-
+		
 		var parsed = "";
-
-
 		for (i = 0; i< slides.length; i++) {
 			var myobj=  slides[i];
 				for (var property in myobj) {
