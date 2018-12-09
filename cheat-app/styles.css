@@ -243,6 +243,7 @@ body {
 	position: absolute;
 	left: 0px;
 	top: 15%;
+	padding: 0.5em 0.5em 0 1em;
 	border-top: 0px solid #333;
 }
 
@@ -250,5 +251,11 @@ body {
 	color: white;
 	font-family: "Trebuchet MS", "Sans Serif";
 	list-style-type: circle;
-	margin-left:1em;
+
+}
+
+#current-notes h1 {
+	font-size: 1.5em;
+	font-size: 3vw;
+	text-transform: uppercase;
 }
