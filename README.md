@@ -1,7 +1,7 @@
 # Pecha Kucha Tools
 
 ## Pecha Kucha Player
-Pecha Kucha Player is a simple tool to publish presentations on the web and integrate them in 3rd party websites easily (via iFrames or by deeplinking).
+Pecha Kucha Player is a tool for publishing presentations on the web and integrate them in 3rd party websites easily (via iFrames or by deeplinking).
 
 The player can play Pecha Kucha presentations with 20 slides plus underlying audio recording. It features a slide counter and a clock that shows the time for each slide.
 
