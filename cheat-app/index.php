@@ -53,9 +53,9 @@ function dir_notes($dir){
 <head>
 	<meta charset="UTF-8" />
 	<title>Speaker / Title</title>
-	<link rel="icon" href="<?php echo $toolsDir ?>/_global-resources/favicon.ico" type="image/png" />
+	<link rel="icon" href="<?php echo $toolsDir ?>/SHARED/favicon.ico" type="image/png" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo $toolsDir.$tool ?>/styles.css" />
-	<script type="text/javascript" src="<?php echo $toolsDir ?>/_global-resources/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="<?php echo $toolsDir ?>/SHARED/jquery-3.3.1.min.js"></script>
 
 	<?php 
     if (file_exists ($delayConfig)){
@@ -63,7 +63,7 @@ function dir_notes($dir){
 	} else {
 		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
 	};
-	echo "<script type=\"text/javascript\">var silence = \"".$toolsDir."/_global-resources/silence-420sec/recording\";</script>";
+	echo "<script type=\"text/javascript\">var silence = \"".$toolsDir."/SHARED/silence-420sec/recording\";</script>";
 	?>
 </head>
 

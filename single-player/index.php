@@ -33,9 +33,9 @@ function dir_list($dir){
 <head>
 	<meta charset="UTF-8" />
 	<title>Speaker / Title</title>
-	<link rel="icon" href="../../../pk-tools/_global-resources/favicon.ico" type="image/png" />
+	<link rel="icon" href="../../../pk-tools/SHARED/favicon.ico" type="image/png" />
 	<link rel="stylesheet" type="text/css" media="all" href="../../../pk-tools/single-player/styles.css" />
-	<script type="text/javascript" src="../../../pk-tools/_global-resources/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../../pk-tools/SHARED/jquery-3.3.1.min.js"></script>
 	<?php 
     if (file_exists ($delayConfig)){
 	  	echo "<script type=\"text/javascript\" src=\"_delay.js\"></script>"; 

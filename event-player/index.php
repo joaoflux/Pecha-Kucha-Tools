@@ -8,8 +8,8 @@ include $pk_tools.$tool.'/functions.php';
     <meta http-equiv="cache-control" content="no-cache">
     <meta charset="UTF-8">
     <title>PK Event Player</title>
-    <script type='text/javascript' src='<?php echo $pk_tools ?>/_global-resources/jquery-3.3.1.min.js'></script> 
-    <link rel="Shortcut Icon" href="<?php echo $pk_tools ?>/_global-resources/favicon.ico" type="image/x-icon" />
+    <script type='text/javascript' src='<?php echo $pk_tools ?>/SHARED/jquery-3.3.1.min.js'></script> 
+    <link rel="Shortcut Icon" href="<?php echo $pk_tools ?>/SHARED/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" media="all" href="<?php echo $pk_tools.$tool ?>/styles.css" />
     <?php 
     if (file_exists ($customStyles)){
