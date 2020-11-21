@@ -1,16 +1,21 @@
-# Pecha Kucha Tools
+# PK Tools
 
-## Pecha Kucha Player
-Pecha Kucha Player is a tool for publishing presentations on the web and integrate them in 3rd party websites easily (via iFrames or by deeplinking).
+A collection of tools for playing 20x20 / Pecha Kucha presentations at events and on the web.
 
-The player can play Pecha Kucha presentations with 20 slides plus underlying audio recording. It features a slide counter and a clock that shows the time for each slide.
-
-All content ist stored in the file system, no database is required. The Player does require PHP, but it can be modified easily to work without any server side scripting.
+PK tools require PHP, they should run on most webservers and shared hosting services with a conventional LAMP stack. 
 
 ## Pecha Kucha Event Player
 The Event Player allows playing a whole event. It lets you navigate between the presentations of the event and between the slides of each presention.
 
-Pecha Kucha Event Player aims to help organisers of events that feature Pecha Kucha presentations. Once the event is set up, no server side scripting is required.
+Pecha Kucha Event Player aims to help organisers of events that feature Pecha Kucha presentations. The event player requires PHP. If you want to run it locally (e.g. if a location does not have reliable internet access), you must have a webserver running on your machine and must place the files in an appropriate directory.
 
-## Pecha Kucha Event Creator
-Pecha Kucha Event Creator is required to prepare the event for the Pecha Kucha Event Player. Creator reqires PHP. Once the event is created, no server side scripting is required to run the Event in the Event Player. This allows prepairing the event on a web server or any computer that runs PHP and later download the whole event and play it from any computer without internet connection and no web server running.
+## Single Player
+Single Player allows playing back individual 20x20 / Pecha Kucha presentations on the web. It features a slide counter and a clock that shows the time for each slide.
+
+They player will show 20 Slides and play an audio recording of the talk. Recording and Slides are synchronized by setting a delay parameter.
+
+All content ist stored in the file system, no database is required.
+
+## Cheat App
+Cheat App displays presentation notes along with the current and upcomig slide. Notes are stored in HTML files. 
+
