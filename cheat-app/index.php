@@ -3,8 +3,9 @@
 <?php
 $slides = array();
 $path = '../';
+$pathNotes = '../cheat/';
 $slides = dir_list($path);
-$notes = dir_notes($path);
+$notes = dir_notes($pathNotes);
 
 function dir_list($dir){
     $allowed_ext = array(".png", ".PNG", ".jpg", ".jpeg", ".mov", ".mp4", ".gif", ".JPG"); 
@@ -35,7 +36,7 @@ function dir_notes($dir){
             $ext = strrchr($sz, '.');
             if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$allowed_ext))) {
                 $dl[] = [
-                    "file" => '../'.$sz,
+                    "file" => $dir.$sz,
                     "type" => $ext,
                 ];
                 
@@ -52,9 +53,9 @@ function dir_notes($dir){
 <head>
 	<meta charset="UTF-8" />
 	<title>Speaker / Title</title>
-	<link rel="icon" href="<?php echo $rootPath?><?php echo $applicationDir ?>/_global-resources/favicon.ico" type="image/png" />
-	<link rel="stylesheet" type="text/css" media="all" href="<?php echo $applicationPath ?>styles.css" />
-	<script type="text/javascript" src="<?php echo $rootPath?><?php echo $applicationDir ?>/_global-resources/jquery-3.3.1.min.js"></script>
+	<link rel="icon" href="<?php echo $toolsDir ?>/_global-resources/favicon.ico" type="image/png" />
+	<link rel="stylesheet" type="text/css" media="all" href="<?php echo $toolsDir.$tool ?>/styles.css" />
+	<script type="text/javascript" src="<?php echo $toolsDir ?>/_global-resources/jquery-3.3.1.min.js"></script>
 
 	<?php 
     if (file_exists ($delayConfig)){
@@ -62,7 +63,7 @@ function dir_notes($dir){
 	} else {
 		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
 	};
-	echo "<script type=\"text/javascript\">var silence = \"".$rootPath.$applicationDir."/_global-resources/silence-420sec/recording\";</script>";
+	echo "<script type=\"text/javascript\">var silence = \"".$toolsDir."/_global-resources/silence-420sec/recording\";</script>";
 	?>
 </head>
 
@@ -86,7 +87,7 @@ function dir_notes($dir){
 			<span id="toggle-full" class="full"></span>
 		</div>	
 	</div>
-	<script type="text/javascript" src="<?php echo $applicationPath ?>app.js"></script>
+	<script type="text/javascript" src="<?php echo $toolsDir.$tool ?>/app.js"></script>
 	<script type='text/javascript'>
 		<?php
 			$php_array = $slides;

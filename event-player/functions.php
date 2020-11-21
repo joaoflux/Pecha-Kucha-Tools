@@ -18,24 +18,6 @@ function prepareEvent($configFile) {
     echo $js_array;
 };
 
-
-// Prepare and store Pecha Kucha event to file
-function storeEvent($configFile, $dataFile) {
-    $slides = array();
-    $event = array();
-
-    // Read echa Kucha event config file
-    $event = json_decode(file_get_contents($configFile),true);
-    
-    // Get the number of presentations stated in event config file
-    $event['presentations'] = readPresentations($event['count']);
-
-    // Write data file
-    $fp = fopen($dataFile, 'w');
-    fwrite($fp, json_encode($event));
-    fclose($fp);
-};
-
 // Read all presentations of Pecha Kucha event
 function readPresentations($count){ 
     $folderID = array();

@@ -113,7 +113,8 @@ function displayInfo(){
     var linkout="<a href='"+link+"' target='blank'>"+link+"</a>";
     $(linkout).appendTo('#info-link');
     var documentTitle = presentationData.speaker+" / "+presentationData.title;
-    $('title').html(documentTitle);
+	$('title').html(documentTitle);
+	//alert(presentationData.delay);
 }
 
 // Controls functions

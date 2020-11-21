@@ -1,10 +1,5 @@
 <?php
-include $applicationPath.'functions.php'; 
-$app = $applicationPath.'app.js'; 
-$eventConfigFile = "_config.json"; // Input File
-$customStyles = "customStyles.css"; // Custom Stylesheet, overwrites global styles
-// $eventDataFile = "event.json"; // Output File
-//storeEvent($eventConfigFile, $eventDataFile); //uncomment, if you want to store event data to a file
+include $pk_tools.$tool.'/functions.php'; 
 ?>
 
 <!DOCTYPE html>
@@ -12,10 +7,10 @@ $customStyles = "customStyles.css"; // Custom Stylesheet, overwrites global styl
   <head>
     <meta http-equiv="cache-control" content="no-cache">
     <meta charset="UTF-8">
-    <title>Pecha Kucha Player</title>
-    <script type='text/javascript' src='<?php echo $rootPath ?>pk-tools/_global-resources/jquery-3.3.1.min.js'></script> 
-    <link rel="Shortcut Icon" href="<?php echo $rootPath ?>pk-tools/_global-resources/favicon.ico" type="image/x-icon" />
-    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $rootPath ?>pk-tools/event-player/styles.css" />
+    <title>PK Event Player</title>
+    <script type='text/javascript' src='<?php echo $pk_tools ?>/_global-resources/jquery-3.3.1.min.js'></script> 
+    <link rel="Shortcut Icon" href="<?php echo $pk_tools ?>/_global-resources/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $pk_tools.$tool ?>/styles.css" />
     <?php 
     if (file_exists ($customStyles)){
       echo "<link rel=\"stylesheet\" type=\"text/css\" media=\"all\" href=\"customStyles.css\" />"; 
@@ -52,6 +47,6 @@ If you remove this, you also need to edit app.js-->
     </script>
 <!-- EO  Data on the fly -->
 
-    <script type="text/javascript" src="<?php echo $app ?>"></script>
+    <script type="text/javascript" src="<?php echo $pk_tools.$tool.'/app.js' ?>"></script>
   </body>
 </html>
