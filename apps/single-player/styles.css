@@ -1,0 +1,209 @@
+/*********************
+* Pecha Kucha Player *
+**********************/
+
+html {
+	background-color: #000;
+}
+
+body {
+	font-family: 'Times New Roman', Times, serif;
+	margin: 0;
+	padding: 0;
+	background-color: #000;
+}
+
+#clockCounter {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	z-index: 500;
+	font-family: "Trebuchet MS", "Sans Serif";
+	background-color: transparent;
+	opacity: 1;
+	width: 60px;
+	height: 60px;
+	margin: 0;
+	padding: 0;
+	visibility: hidden;
+}
+
+#clock {
+	background-color: transparent;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	opacity: 1;
+}
+
+#counter {
+	background-color: transparent;
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	opacity: 0.9;
+}
+
+#img-num {
+	position: absolute;
+	width: 40px;
+	top: 18px;
+	left: 10px;
+	line-height: 25px;
+	z-index: 500;
+	text-align: center;
+	font-size: 25px;
+	color: #FFF;
+	background-color: transparent;
+	margin-top: 0;
+	padding: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	overflow: hidden;
+	opacity: 0.9;
+}
+
+#controls {
+	visibility: visible;
+	position: absolute;
+	bottom: 20px;
+	left: 5px;
+	z-index: 400;
+	font-family: "Trebuchet MS", "Sans Serif";
+	background-color: transparent;
+	opacity: 0.9;
+	width: 70px;
+	height: 30px;
+	margin: 0;
+	border: 0px solid transparent;
+	padding: 0;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+}
+
+#play-pause {
+	background-color: transparent;
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	display: inline-block;
+	cursor: pointer;
+	-moz-border-radius: 4px;
+	border-radius: 4px;	
+}
+
+#toggle-full {
+	background-color: transparent;
+	width: 30px;
+	height: 30px;
+	margin: 0;
+	display: inline-block;
+	cursor: pointer;
+	-moz-border-radius: 4px;
+	border-radius: 4px;	
+}
+
+#play-pause:hover {
+	border: 0px solid #eee;
+	background-color: transparent;	
+}
+
+#info {
+	display: inline-block;
+	width: 540px;
+	margin: 0;
+	padding: 0.5em;
+}
+#speaker {
+	font-family: "Trebuchet MS", "Sans Serif";
+	font-size: 2em;
+	font-size: 3.8vw;
+}
+#title {
+	font-size: 1.5em;
+	font-size: 3vw;
+}
+
+#date {
+	font-size: 1em;
+	font-size: 2vw;
+}
+
+#info-speaker, #info-title {
+	display: block;
+}
+#info-title, #title {
+	font-style: italic;
+}
+#slideshow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: 0px solid black;
+	padding: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+    /*top: 50%;
+    left: 50%;
+    margin: -384px 0 0 -512px; */
+	
+}
+#background {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: #000;
+	color: #EEEEEE;
+	text-align: center;
+	z-index: 100;
+	border: 0px solid black;
+	padding: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+#background #speaker {
+	margin-top: 0;
+}
+
+#next-slide, #current-slide {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
+	position: absolute;
+}
+
+#next-slide {
+	display: none;
+	z-index: 300;
+}
+
+#current-slide {
+	z-index: 300;
+}
+
+#next-slide img, #current-slide img {
+	align-self: center;
+	margin: auto;
+	max-width: 100%;
+	max-height: 100%;
+	
+}
+#start-button {
+	background-color: #FF0000;
+	color: #EEEEEE;
+	text-align: center;
+	padding: 10px;
+}
+.show{
+	display: block;
+}
+.hide{
+	display: none;
+}
