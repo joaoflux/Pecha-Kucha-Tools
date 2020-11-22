@@ -75,7 +75,7 @@ function dir_notes($dir){
 	} else {
 		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
 	};
-	echo "<script type=\"text/javascript\">var silence = \"".$assets."silence-420sec/recording\";</script>";
+	echo "<script type=\"text/javascript\">var recording = \"".$assets."silence-420sec/recording\";</script>";
 	?>
 </head>
 

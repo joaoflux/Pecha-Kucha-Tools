@@ -262,7 +262,7 @@ function initAudio(){
 	} else {
 		extension = '.mp3';
 	}
-	soundfile = "recording"+extension;
+	soundfile = recording+extension;
 	audioElement.src = soundfile;
 	if ((audioElement.buffered != undefined) && (audioElement.buffered.length != 0)) {
 		$(audioElement).bind('progress', audioPreloader);

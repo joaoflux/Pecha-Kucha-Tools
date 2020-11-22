@@ -55,7 +55,12 @@ function dir_list($dir){
 	} else {
 		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
 	};
-	echo "<script type=\"text/javascript\">var silence = \"".$assets."silence-420sec/recording\";</script>";
+	if (file_exists ('recording.mp3') && file_exists ('recording.ogg') ){
+		echo "<script type=\"text/javascript\">var recording = \"recording\";</script>";
+  	} else {
+		echo "<script type=\"text/javascript\">var recording = \"".$assets."silence-420sec/recording\";</script>";
+  };
+	
 	?>
 </head>
 
