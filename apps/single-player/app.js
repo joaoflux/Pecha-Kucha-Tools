@@ -12,8 +12,8 @@ var speaker;
 var topic;
 var documentTitle;
 var date;
-// var delay_in;
-var delay_out;
+var delay_in;
+// var delay_out;
 var link;
 
 // slideshow vars
@@ -68,16 +68,14 @@ $(document).ready(init);
 
 // functions
 function init(){
-	loadPresentationData();
-	
+	loadPresentationData(initTimes);
 	initAudio();
-	initTimes();
 	audioElement.onended = function() {
 	    resetShow();
 		};
 }
 
-function loadPresentationData() {
+function loadPresentationData(delayCallback) {
     //var eventDataFile = "event.json";
     $.ajax({
         url: presentationDataFile,
@@ -85,12 +83,18 @@ function loadPresentationData() {
         success: function (data) {
             data = $.parseJSON(data);
 			presentationData = data;
+			delayCallback (presentationData.delay_in);
 			displayInfo();
 		},
-		//async: false
 	});
+}
 
-	
+function initTimes(delay){
+	//alert(delay);
+	for(var i=0; i<=20; i++){
+		var time = Number (delay) + i * 20 * 1000;
+		timeArr.push(time);
+	}
 }
 
 function parseSlides() {
@@ -104,13 +108,8 @@ function parseSlides() {
 }
 
 function resetShow() {
-//	playing = false;
-//	curTime = 0;
 	curImage = 0;
-//	timeArr.length = 0;
 	initAudio();
-//	initTimes();
-	
 	$("#play-pause").attr("class", "play");
 }
 
@@ -124,7 +123,7 @@ function displayInfo(){
     $(linkout).appendTo('#info-link');
     var documentTitle = presentationData.speaker+" / "+presentationData.title;
 	$('title').html(documentTitle);
-	//alert(presentationData.delay);
+	//alert(delay_in);
 }
 
 // Controls functions
@@ -289,12 +288,7 @@ function audioPreloader(){
    	}
 }
 
-function initTimes(){
-	for(var i=0; i<=20; i++){
-		var time = Number (delay_in) + i * 20 * 1000;
-		timeArr.push(time);
-	}
-}
+
 
 function timeUpdate(){
 	var rem = parseInt(audioElement.duration - audioElement.currentTime, 10);

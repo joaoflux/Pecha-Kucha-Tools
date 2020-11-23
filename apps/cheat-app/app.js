@@ -69,29 +69,35 @@ $(document).ready(init);
 
 // functions
 function init(){
+	//loadPresentationData(initTimes); //use, if you want to honor the talks dealy_in setting
 	loadPresentationData();
-	
+	initTimes(0); //use, if you want to ignore the talk's dealy_in setting
 	initAudio();
-	initTimes();
 	audioElement.onended = function() {
 	    resetShow();
 		};
 }
 
-function loadPresentationData() {
-    //var eventDataFile = "event.json";
+function loadPresentationData(delayCallback) {
+    //var eventDataFile = "event.json"; //use, if you want to honor the talks dealy_in setting
     $.ajax({
         url: presentationDataFile,
         dataType: "text",
         success: function (data) {
             data = $.parseJSON(data);
 			presentationData = data;
+			//delayCallback (presentationData.delay_in);  //use, if you want to honor the talks dealy_in setting
 			displayInfo();
 		},
-		//async: false
 	});
+}
 
-	
+function initTimes(delay){
+	//alert(delay);
+	for(var i=0; i<=20; i++){
+		var time = Number (delay) + i * 20 * 1000;
+		timeArr.push(time);
+	}
 }
 
 function parseSlides() {
@@ -287,13 +293,6 @@ function audioPreloader(){
    	if(loaded >= 90){
    		displayStartBtn();
    	}
-}
-
-function initTimes(){
-	for(var i=0; i<=20; i++){
-		var time = Number (delay_in) + i * 20 * 1000;
-		timeArr.push(time);
-	}
 }
 
 function timeUpdate(){
