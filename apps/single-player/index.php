@@ -48,16 +48,11 @@ function listFiles($dir,$filter){
 	<script type="text/javascript" src="<?php echo $assets ?>jquery-3.3.1.min.js"></script>
 
 	<?php 
-    if (file_exists ($delayConfig)){
-	  	echo "<script type=\"text/javascript\" src=\"_delay.js\"></script>"; 
-	} else {
-		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
-	};
 	if (file_exists ('recording.mp3') && file_exists ('recording.ogg') ){
 		echo "<script type=\"text/javascript\">var recording = \"".$assets."silence-420sec/recording\";</script>";
   	} else {
 		echo "<script type=\"text/javascript\">var recording = \"".$assets."silence-420sec/recording\";</script>";
-  };
+	};
 	
 	?>
 </head>
