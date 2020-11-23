@@ -44,7 +44,7 @@ include $app.'functions.php';
 Only required, if you don't read the event from a stored file 
 If you remove this, you also need to edit app.js-->
     <script type="text/javascript">
-      var eventData = <?php prepareEvent($eventConfigFile); ?>;
+      var eventData = <?php prepareEvent($eventConfigFile,$readSlides); ?>;
       var parsed = "";
     </script>
 <!-- EO  Data on the fly -->

@@ -1,1 +1,1 @@
-var delay_in = "20000";
+var delay_in = "00000";

@@ -4,19 +4,17 @@
 $app = $appDir.$app.'/';
 $assets = $appDir.'assets/'; 
 $slides = array();
-$path = getcwd();
-$slides = dir_list($path);
+$slidesDir = getcwd();
+$readSlides = array(".png", ".PNG", ".jpg", ".jpeg", ".mov", ".mp4", ".gif", ".JPG");
+$slides = json_encode(listFiles($slidesDir,$readSlides));
 
-function dir_list($dir){ 
-    $allowed_ext = array(".png", ".PNG", ".jpg", ".jpeg", ".mov", ".mp4", ".gif", ".JPG"); 
-    $dl = array();
+function listFiles($dir,$filter){ 
+	$dl = array();
     $dt = array();
     if ($hd = opendir($dir))    { 
         while ($sz = readdir($hd)) {
             $ext = strrchr($sz, '.');
-            if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$allowed_ext))) {
-                //$dl[] = $sz;
-
+            if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$filter))) {
                 $dl[] = [
                     "file" => $sz,
                     "type" => $ext,
@@ -56,7 +54,7 @@ function dir_list($dir){
 		echo "<script type=\"text/javascript\">var delay_in = \"\";</script>";
 	};
 	if (file_exists ('recording.mp3') && file_exists ('recording.ogg') ){
-		echo "<script type=\"text/javascript\">var recording = \"recording\";</script>";
+		echo "<script type=\"text/javascript\">var recording = \"".$assets."silence-420sec/recording\";</script>";
   	} else {
 		echo "<script type=\"text/javascript\">var recording = \"".$assets."silence-420sec/recording\";</script>";
   };
@@ -72,7 +70,7 @@ function dir_list($dir){
 			<div id="date"></div>
 		</div>
 		<div id="next-slide"></div>
-		<div id="current-slide"></div>			
+		<div id="current-slide"></div>			  
 		<div id="clockCounter">
 			<canvas id="counter" width="60" height="60"></canvas>
 			<div id="img-num">0</div>
@@ -85,21 +83,8 @@ function dir_list($dir){
 	</div>
 	<script type="text/javascript" src="<?php echo $app ?>app.js"></script>
 	<script type='text/javascript'>
-		<?php
-			$php_array = $slides;
-			$js_array = json_encode($php_array);
-			echo "var slides = ". $js_array . ";\n";
-		?>
-
-		var parsed = "";
-
-
-		for (i = 0; i< slides.length; i++) {
-			var myobj=  slides[i];
-				for (var property in myobj) {
-					parsed += property + ": " + myobj[property] + "\n";          
-				}
-		}                           
+		<?php echo "var slides = ". $slides . ";\n"; ?>
+		parseSlides();                          
 		inactivityTime();
 	</script>
 </body>

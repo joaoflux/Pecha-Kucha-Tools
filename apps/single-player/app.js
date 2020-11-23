@@ -93,6 +93,16 @@ function loadPresentationData() {
 	
 }
 
+function parseSlides() {
+	var parsed = "";
+		for (i = 0; i< slides.length; i++) {
+			var myobj=  slides[i];
+				for (var property in myobj) {
+					parsed += property + ": " + myobj[property] + "\n";          
+				}
+		}
+}
+
 function resetShow() {
 //	playing = false;
 //	curTime = 0;

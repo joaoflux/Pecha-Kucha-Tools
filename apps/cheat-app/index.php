@@ -4,44 +4,24 @@
 $app = $appDir.$app.'/';
 $assets = $appDir.'assets/'; 
 $slides = array();
-$path = '../';
-$pathNotes = '../cheat/';
-$slides = dir_list($path);
-$notes = dir_notes($pathNotes);
+$slidesDir = '../';
+$readSlides = array(".png", ".PNG", ".jpg", ".jpeg", ".mov", ".mp4", ".gif", ".JPG");
+$notesDir = '../cheat/';
+$readNotes = array(".html"); 
+$slides = json_encode(listFiles($slidesDir,$readSlides));
+$notes = json_encode(listFiles($notesDir,$readNotes));
 
-function dir_list($dir){
-    $allowed_ext = array(".png", ".PNG", ".jpg", ".jpeg", ".mov", ".mp4", ".gif", ".JPG"); 
+function listFiles($dir,$filter){ 
     $dl = array();
     $dt = array();
     if ($hd = opendir($dir))    { 
         while ($sz = readdir($hd)) {
             $ext = strrchr($sz, '.');
-            if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$allowed_ext))) {
-                $dl[] = [
-                    "file" => '../'.$sz,
-                    "type" => $ext,
-                ];            
-            }
-        } 
-    closedir($hd); 
-    } 
-    sort($dl);
-    return $dl;
-}
-
-function dir_notes($dir){
-    $allowed_ext = array(".html"); 
-    $dl = array();
-    $dt = array();
-    if ($hd = opendir($dir))    { 
-        while ($sz = readdir($hd)) {
-            $ext = strrchr($sz, '.');
-            if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$allowed_ext))) {
+            if ((preg_match("/^\./",$sz)==0) && (in_array($ext,$filter))) {
                 $dl[] = [
                     "file" => $dir.$sz,
                     "type" => $ext,
-                ];
-                
+                ];            
             }
         } 
     closedir($hd); 
@@ -102,22 +82,10 @@ function dir_notes($dir){
 	<script type="text/javascript" src="<?php echo $app ?>app.js"></script>
 	<script type='text/javascript'>
 		<?php
-			$php_array = $slides;
-			$js_array = json_encode($php_array);
-			echo "var slides = ". $js_array . ";\n";
-
-			$php_array_notes = $notes;
-			$js_array_notes = json_encode($php_array_notes);
-			echo "var notes = ". $js_array_notes . ";\n";
+			echo "var slides = ". $slides . ";\n";
+			echo "var notes = ". $notes . ";\n";
 		?>
-		
-		var parsed = "";
-		for (i = 0; i< slides.length; i++) {
-			var myobj=  slides[i];
-				for (var property in myobj) {
-					parsed += property + ": " + myobj[property] + "\n";          
-				}
-		}                           
+		parseSlides();                           
 		inactivityTime();
 	</script>
 </body>
