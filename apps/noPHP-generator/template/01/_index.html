@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="de-DE">
+<head>
+	<meta charset="UTF-8" />
+	<title>Speaker / Title</title>
+	<link rel="stylesheet" type="text/css" media="all" href="../app/single-player.css" />
+	<script type='text/javascript' src='../app/jquery-3.3.1.min.js'></script>
+	<script type="text/javascript"> var delay_in = ""; </script>
+</head>
+
+<body>
+	<div id="slideshow">
+		<div id="background">
+			<h1 id="speaker"></h1>
+			<div id="title"></div>
+			<div id="date"></div>
+		</div>
+		<div id="next-slide"></div>
+		<div id="current-slide"></div>			
+		<div id="clockCounter">
+			<canvas id="counter" width="60" height="60"></canvas>
+			<div id="img-num">0</div>
+			<canvas id="clock" width="60" height="60"></canvas>
+		</div>			
+		<div id="controls">
+			<span id="play-pause" class="play"></span>
+			<span id="toggle-full" class="full"></span>
+		</div>	
+	</div>
+    <script type="text/javascript" src="../app/single-player.js"></script>
+</body>
+</html>
